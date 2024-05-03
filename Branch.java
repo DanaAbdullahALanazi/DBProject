@@ -1,5 +1,8 @@
 import java.util.*;
 import java.lang.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Branch{
 private static Scanner input= new Scanner(System.in);
 
@@ -147,6 +150,28 @@ System.exit(1);
 
 
 
+private static void displayRecords(Statement stmt) throws SQLException {
+        String sql = "SELECT * FROM Branch";
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            // Retrieve by column name
+            int id = rs.getInt("BranchID");
+            int phoneNumber = rs.getInt("BPhone");
+            String city = rs.getString("City");
+            String state = rs.getString("State");
+            int zipCode = rs.getInt("ZIP");
+
+            // Display values
+            System.out.println("BranchID: " + id);
+            System.out.println("PhoneNumber: " + phoneNumber);
+            System.out.println("City: " + city);
+            System.out.println("State: " + state);
+            System.out.println("ZipCode: " + zipCode);
+            System.out.println();
+        }
+        rs.close();
+    }
 
 
 
