@@ -1,12 +1,15 @@
+import java.sql.Statement;
 import java.util.*;
 import java.lang.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.*;
 public class Branch{
 private static Scanner input= new Scanner(System.in);
 
 public static void main(String args[]){
+
+ 
     int choice1;
     do{
         System.out.println("Table Branch:\n 1) Insert new record \n2) Display all the records \n3) Exit\n Choose an operation:)");
@@ -19,7 +22,7 @@ public static void main(String args[]){
         input.nextLine(); // Clear the newline character from the input stream
     switch(choice1){
  case 1:
- String choice2=null;//just to initilize it
+      String choice2=null;//just to initilize it
  do{
     Integer EID=null;
  System.out.println("Branch - INSERTION:");
@@ -173,6 +176,34 @@ private static void displayRecords(Statement stmt) throws SQLException {
         rs.close();
     }
 
+private static void insert(int id , int phone , String city, String state , int zipCode){
+    Connection connection = null;
+    String url = "jdbc:mariadb://localhost:3306/Database: car_dealership_management";
+    String user = "root";
+    String pwd = "";
+
+    try {
+        connection = DriverManager.getConnection(url, user, pwd);
+    } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    System.out.println("Successfully connected to database");
+    try {
+        Statement stmt = connection.createStatement();
+
+        String sql ="INSERT INTO branch VALUES("+id + "," +phone + ","+city+ ","+state+ "," +zipCode+");";
+       
+        stmt.executeUpdate(sql);
+
+
+        stmt.close();
+        connection.close();
+    } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+}
 
 
 }//end class
