@@ -134,7 +134,7 @@ public static void main(String args[]){
  while(choice2.equalsIgnoreCase("Y"));
 
  case 2: 
-
+ displayRecords();
 
  case 3: 
  break;
@@ -150,7 +150,7 @@ System.exit(1);
 
 
 
-private static void displayRecords(Statement stmt) {
+private static void displayRecords() {
     Connection connection = null;
     String url = "jdbc:mariadb://localhost:3306/Database: car_dealership_management";
     String user = "root";
