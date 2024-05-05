@@ -150,31 +150,47 @@ System.exit(1);
 
 
 
+private static void displayRecords(Statement stmt) {
+    Connection connection = null;
+    String url = "jdbc:mariadb://localhost:3306/Database: car_dealership_management";
+    String user = "root";
+    String pwd = "";
 
-
-
-private static void displayRecords(Statement stmt) throws SQLException {
-        String sql = "SELECT * FROM Branch";
-        ResultSet rs = stmt.executeQuery(sql);
+    try {
+        connection = DriverManager.getConnection(url, user, pwd);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    System.out.println("Successfully connected to database");
+    try {
+    Statement stmt = connection.createStatement();
+    String sql = "SELECT * FROM branch";
+    ResultSet rs = stmt.executeQuery(sql);
 
         while (rs.next()) {
             // Retrieve by column name
-            int id = rs.getInt("BranchID");
-            int phoneNumber = rs.getInt("BPhone");
-            String city = rs.getString("City");
-            String state = rs.getString("State");
-            int zipCode = rs.getInt("ZIP");
+            int id = rs.getInt("id");
+            int phone = rs.getInt("phone");
+            String city = rs.getString("city");
+            String state = rs.getString("state");
+            int zipCode = rs.getInt("zipCode");
 
             // Display values
             System.out.println("BranchID: " + id);
-            System.out.println("PhoneNumber: " + phoneNumber);
+            System.out.println("PhoneNumber: " + phone);
             System.out.println("City: " + city);
             System.out.println("State: " + state);
             System.out.println("ZipCode: " + zipCode);
             System.out.println();
         }
         rs.close();
+        stmt.close();
+        connection.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+    }
+
 
 private static void insert(int id , int phone , String city, String state , int zipCode){
     Connection connection = null;
