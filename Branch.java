@@ -1,3 +1,4 @@
+package Branch;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 public class Branch {
 	private static Scanner input = new Scanner(System.in);
 
-	public static void main(String args[]) {
+	public static void main(String args[])  { //throws Exception
 
 		int choice1;
 		do {
@@ -151,7 +152,7 @@ public class Branch {
 
 	private static void displayRecords() {
 		Connection connection = null;
-		String url = "jdbc:mariadb://localhost:3306/Database: car_dealership_management";
+		String url = "jdbc:mariadb://localhost:3306/car_dealership_management";
 		String user = "root";
 		String pwd = "";
 
@@ -192,7 +193,7 @@ public class Branch {
 
 	public static void insert(Integer id, Integer phone, String city, String state, Integer zipCode) {
 		Connection connection = null;
-		String url = "jdbc:mariadb://localhost:3306/Database: car_dealership_management";
+		String url = "jdbc:mariadb://localhost:3306/car_dealership_management";
 		String user = "root";
 		String pwd = "";
 
@@ -206,7 +207,7 @@ public class Branch {
 		try {
 			Statement stmt = connection.createStatement();
 
-			String sql = "INSERT INTO branch VALUES(" + id + "," + phone + "," + city + "," + state + "," + zipCode
+			String sql = "INSERT INTO branch VALUES(" + id + "," + phone + ",'" + city + "','" + state + "'," + zipCode
 					+ ");";
 
 			stmt.executeUpdate(sql);
