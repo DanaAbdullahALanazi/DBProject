@@ -169,11 +169,11 @@ private static void displayRecords() {
 
         while (rs.next()) {
             // Retrieve by column name
-            int id = rs.getInt("id");
-            int phone = rs.getInt("phone");
-            String city = rs.getString("city");
-            String state = rs.getString("state");
-            int zipCode = rs.getInt("zipCode");
+            int id = rs.getInt("BranchID");
+            int phone = rs.getInt("Bphone");
+            String city = rs.getString("City");
+            String state = rs.getString("State");
+            int zipCode = rs.getInt("ZIP");
 
             // Display values
             System.out.println("BranchID: " + id);
